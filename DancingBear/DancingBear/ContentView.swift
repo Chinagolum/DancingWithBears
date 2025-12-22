@@ -9,69 +9,77 @@
 import SwiftUI
 import SceneKit
 import Combine
+import GameController
 
 // MARK: - Public View
 struct ContentView: View {
     @StateObject private var vm = BearAnimViewModel()
-
+    
     var body: some View {
-        VStack(spacing: 12) {
-            DAESceneView(vm: vm)
-                .ignoresSafeArea(edges: .top)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .onAppear {
-                    // start after mount
-                    DispatchQueue.main.async { vm.playSelected(loop: true) }
-                }
-
-            // Controls
-            VStack(spacing: 10) {
-
-                // --- Bottom Buttons: P1 / P2 / P3 / P4 ---
-                HStack(spacing: 10) {
-                    ForEach(vm.clips, id: \.self) { clip in
-                        Button {
-                            vm.selectedClip = clip
-                            vm.playSelected(loop: true)
-                        } label: {
-                            Text(clip.uppercased())
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 10)
+        ZStack {
+            VStack(spacing: 12) {
+                DAESceneView(vm: vm)
+                    .ignoresSafeArea(edges: .top)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .onAppear {
+                        // start after mount
+                        DispatchQueue.main.async { vm.playSelected(loop: true) }
+                    }
+                
+                // Controls
+                VStack(spacing: 10) {
+                    
+                    // --- Bottom Buttons: P1 / P2 / P3 / P4 ---
+                    HStack(spacing: 10) {
+                        ForEach(vm.clips, id: \.self) { clip in
+                            Button {
+                                vm.selectedClip = clip
+                                vm.playSelected(loop: true)
+                            } label: {
+                                Text(clip.uppercased())
+                                    .font(.headline)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 10)
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(vm.selectedClip == clip ? .accentColor : .secondary)
                         }
-                        .buttonStyle(.borderedProminent)
-                        .tint(vm.selectedClip == clip ? .accentColor : .secondary)
                     }
+                    
+                    // Play / Pause / Stop
+                    HStack(spacing: 12) {
+                        Button { vm.playSelected(loop: true) } label: {
+                            Label("Play", systemImage: "play.fill")
+                        }
+                        Button { vm.pauseOrResume() } label: {
+                            Label(vm.isPaused ? "Resume" : "Pause",
+                                  systemImage: vm.isPaused ? "playpause.fill" : "pause.fill")
+                        }
+                        Button(role: .destructive) { vm.stop() } label: {
+                            Label("Stop", systemImage: "stop.fill")
+                        }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    
+                    // Speed slider
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
+                            Text("Speed"); Spacer()
+                            Text(String(format: "%.2fx", vm.speed)).monospacedDigit()
+                        }
+                        Slider(value: $vm.speed, in: 0.25...3.0, step: 0.05)
+                    }
+                    .onChange(of: vm.speed) { _ in vm.applySpeed() }
                 }
-
-                // Play / Pause / Stop
-                HStack(spacing: 12) {
-                    Button { vm.playSelected(loop: true) } label: {
-                        Label("Play", systemImage: "play.fill")
-                    }
-                    Button { vm.pauseOrResume() } label: {
-                        Label(vm.isPaused ? "Resume" : "Pause",
-                              systemImage: vm.isPaused ? "playpause.fill" : "pause.fill")
-                    }
-                    Button(role: .destructive) { vm.stop() } label: {
-                        Label("Stop", systemImage: "stop.fill")
-                    }
-                }
-                .buttonStyle(.borderedProminent)
-
-                // Speed slider
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text("Speed"); Spacer()
-                        Text(String(format: "%.2fx", vm.speed)).monospacedDigit()
-                    }
-                    Slider(value: $vm.speed, in: 0.25...3.0, step: 0.05)
-                }
-                .onChange(of: vm.speed) { _ in vm.applySpeed() }
+                .padding()
+                .background(.ultraThinMaterial)
             }
-            .padding()
-            .background(.ultraThinMaterial)
+            GameControllerView { pattern in
+                print("Pattern completed: \(pattern)")
+            }
         }
+        
+        
     }
 }
 
