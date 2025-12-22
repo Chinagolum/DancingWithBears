@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AE9A22622EF9B08B001FE49B /* GameController in Frameworks */ = {isa = PBXBuildFile; productRef = AE9A22612EF9B08B001FE49B /* GameController */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		AE741AE62EF989F1000B6763 /* DancingBear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DancingBear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE9A22622EF9B08B001FE49B /* GameController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = DancingBear;
 			packageProductDependencies = (
+				AE9A22612EF9B08B001FE49B /* GameController */,
 			);
 			productName = DancingBear;
 			productReference = AE741AE62EF989F1000B6763 /* DancingBear.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = AE741ADD2EF989F1000B6763;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AE9A22602EF9B08B001FE49B /* XCLocalSwiftPackageReference "../GameController" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AE741AE72EF989F1000B6763 /* Products */;
 			projectDirPath = "";
@@ -332,6 +341,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		AE9A22602EF9B08B001FE49B /* XCLocalSwiftPackageReference "../GameController" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../GameController;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AE9A22612EF9B08B001FE49B /* GameController */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GameController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AE741ADE2EF989F1000B6763 /* Project object */;
 }
