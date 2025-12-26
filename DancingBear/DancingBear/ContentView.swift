@@ -3,71 +3,82 @@
 //  DWB3
 //
 //  Created by abcd on 10/18/25.
-//  Updated: button-triggered p1…p4 .dae playback
+//  Updated: pattern-triggered p1…p4 .dae playback
 //
 
 import SwiftUI
 import SceneKit
 import Combine
+import GameController
 
 // MARK: - Public View
 struct ContentView: View {
     @StateObject private var vm = BearAnimViewModel()
 
     var body: some View {
+        
+        GameControllerView { pattern in
+            print("Pattern completed: \(pattern)")
+            vm.handlePattern(pattern)
+        }
+        .padding()
+
+        
         VStack(spacing: 12) {
             DAESceneView(vm: vm)
                 .ignoresSafeArea(edges: .top)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .onAppear {
                     // start after mount
-                    DispatchQueue.main.async { vm.playSelected(loop: true) }
+                    DispatchQueue.main.async { vm.playSelected(loop: false) }
                 }
 
+                .background(.ultraThinMaterial)
+                        
             // Controls
             VStack(spacing: 10) {
 
                 // --- Bottom Buttons: P1 / P2 / P3 / P4 ---
-                HStack(spacing: 10) {
-                    ForEach(vm.clips, id: \.self) { clip in
-                        Button {
-                            vm.selectedClip = clip
-                            vm.playSelected(loop: true)
-                        } label: {
-                            Text(clip.uppercased())
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 10)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(vm.selectedClip == clip ? .accentColor : .secondary)
-                    }
-                }
+//                HStack(spacing: 10) {
+//                    ForEach(vm.clips, id: \.self) { clip in
+//                        Button {
+//                            vm.selectedClip = clip
+//                            vm.playSelected(loop: false)
+//                        } label: {
+//                            Text(clip.uppercased())
+//                                .font(.headline)
+//                                .frame(maxWidth: .infinity)
+//                                .padding(.vertical, 10)
+//                        }
+//                        .buttonStyle(.borderedProminent)
+//                        .tint(vm.selectedClip == clip ? .accentColor : .secondary)
+//                    }
+//                }
 
                 // Play / Pause / Stop
-                HStack(spacing: 12) {
-                    Button { vm.playSelected(loop: true) } label: {
-                        Label("Play", systemImage: "play.fill")
-                    }
-                    Button { vm.pauseOrResume() } label: {
-                        Label(vm.isPaused ? "Resume" : "Pause",
-                              systemImage: vm.isPaused ? "playpause.fill" : "pause.fill")
-                    }
-                    Button(role: .destructive) { vm.stop() } label: {
-                        Label("Stop", systemImage: "stop.fill")
-                    }
-                }
-                .buttonStyle(.borderedProminent)
+//                HStack(spacing: 12) {
+//                    Button { vm.playSelected(loop: false) } label: {
+//                        Label("Play", systemImage: "play.fill")
+//                    }
+//                    Button { vm.pauseOrResume() } label: {
+//                        Label(vm.isPaused ? "Resume" : "Pause",
+//                              systemImage: vm.isPaused ? "playpause.fill" : "pause.fill")
+//                    }
+//                    Button(role: .destructive) { vm.stop() } label: {
+//                        Label("Stop", systemImage: "stop.fill")
+//                    }
+//                }
+//                .buttonStyle(.borderedProminent)
 
                 // Speed slider
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text("Speed"); Spacer()
-                        Text(String(format: "%.2fx", vm.speed)).monospacedDigit()
-                    }
-                    Slider(value: $vm.speed, in: 0.25...3.0, step: 0.05)
-                }
-                .onChange(of: vm.speed) { _ in vm.applySpeed() }
+//                VStack(alignment: .leading, spacing: 4) {
+//                    HStack {
+//                        Text("Speed"); Spacer()
+//                        Text(String(format: "%.2fx", vm.speed)).monospacedDigit()
+//                    }
+//                    Slider(value: $vm.speed, in: 0.25...3.0, step: 0.05)
+//                }
+//                .onChange(of: vm.speed) { _ in vm.applySpeed() }
             }
             .padding()
             .background(.ultraThinMaterial)
@@ -81,7 +92,7 @@ final class BearAnimViewModel: ObservableObject {
     let clips = ["p1", "p2", "p3", "p4"]
 
     @Published var selectedClip: String = "p1"
-    @Published var speed: Float = 1.0
+    @Published var speed: Float = 0.6
     @Published var isPaused: Bool = false
 
     // Scene references
@@ -89,6 +100,54 @@ final class BearAnimViewModel: ObservableObject {
 
     // Cache last camera transform so swapping scenes keeps viewpoint
     private var lastCameraTransform: SCNMatrix4?
+
+    // Pattern definitions
+    private let patternMap: [[Int]: String] = [
+        [0, 1, 2]: "p1",
+        [2, 5, 8]: "p2",
+        [8, 7, 6]: "p3",
+        [6, 3, 0]: "p4"
+    ]
+
+    // Timer for pattern timeout
+    private var timeoutTimer: Timer?
+    private let timeoutInterval: TimeInterval = 4.0
+
+    func handlePattern(_ pattern: [Int]) {
+        // Cancel any existing timeout timer
+        timeoutTimer?.invalidate()
+        
+        // Check if pattern matches any dance pattern
+        if let dance = patternMap[pattern] {
+            selectedClip = dance
+            playSelected(loop: false)
+            
+            // Start timeout timer for next pattern
+            startTimeoutTimer()
+        } else {
+            // Incorrect or misordered pattern - play sad animation
+            selectedClip = "sad"
+            playSelected(loop: false)
+            
+            // Start timeout timer for next pattern
+            startTimeoutTimer()
+        }
+    }
+
+    private func startTimeoutTimer() {
+        timeoutTimer = Timer.scheduledTimer(withTimeInterval: timeoutInterval, repeats: false) { [weak self] _ in
+            self?.handleTimeout()
+        }
+    }
+
+    private func handleTimeout() {
+        selectedClip = "sad"
+        playSelected(loop: false)
+    }
+
+    deinit {
+        timeoutTimer?.invalidate()
+    }
 
     func playSelected(loop: Bool) {
         guard let view = scnView else { return }
@@ -208,4 +267,3 @@ struct DAESceneView: UIViewRepresentable {
 #Preview {
     ContentView()
 }
-
