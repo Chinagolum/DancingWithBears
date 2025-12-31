@@ -23,14 +23,11 @@ public struct GameEngineView: View {
                     .ignoresSafeArea(edges: .top)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .onAppear {
-                        // start after mount
-                        DispatchQueue.main.async { vm.playSelected(loop: true) }
+                        vm.playSelected(loop: true)
                     }
                 
                 // Controls
                 VStack(spacing: 10) {
-                    
-                    // --- Bottom Buttons: P1 / P2 / P3 / P4 ---
                     HStack(spacing: 10) {
                         ForEach(vm.clips, id: \.self) { clip in
                             Button {
@@ -47,7 +44,6 @@ public struct GameEngineView: View {
                         }
                     }
                     
-                    // Play / Pause / Stop
                     HStack(spacing: 12) {
                         Button { vm.playSelected(loop: true) } label: {
                             Label("Play", systemImage: "play.fill")
@@ -62,7 +58,6 @@ public struct GameEngineView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     
-                    // Speed slider
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
                             Text("Speed"); Spacer()
@@ -75,11 +70,10 @@ public struct GameEngineView: View {
                 .padding()
                 .background(.ultraThinMaterial)
             }
-
+            
             GameControllerView { pattern in
                 print("Pattern completed: \(pattern)")
             }
-            
         }
     }
 }
@@ -87,45 +81,34 @@ public struct GameEngineView: View {
 // MARK: - ViewModel
 @MainActor
 final class BearAnimViewModel: ObservableObject {
-    // Map directly to your files in art.scnassets: p1.dae, p2.dae, p3.dae, p4.dae
     let clips = ["p1", "p2", "p3", "p4"]
 
     @Published var selectedClip: String = "p1"
     @Published var speed: Float = 1.0
     @Published var isPaused: Bool = false
 
-    // Scene references
     fileprivate weak var scnView: SCNView?
-
-    // Cache last camera transform so swapping scenes keeps viewpoint
     private var lastCameraTransform: SCNMatrix4?
 
     func playSelected(loop: Bool) {
         guard let view = scnView else { return }
 
-        // Preserve camera look before swapping scene
         if let camNode = view.pointOfView {
             lastCameraTransform = camNode.transform
         }
 
-        // 1) Load the chosen DAE as a scene
-        let path = "art.scnassets/\(selectedClip).dae"
-        guard let newScene = SCNScene(named: path) else {
-            print("⚠️ Could not load \(path)")
+        // Load from app bundle directly
+        guard let newScene = SCNScene(named: "art.scnassets/\(selectedClip).dae") else {
+            print("⚠️ Could not load \(selectedClip).dae from art.scnassets")
             return
         }
 
-        // 2) Ensure lighting & background
         newScene.background.contents = view.backgroundColor ?? UIColor.systemBackground
-
-        // 3) Force all animations in the scene to loop and use our speed
         loopAndSpeedAllAnimations(in: newScene.rootNode, loop: loop, speed: speed)
 
-        // 4) Swap the scene in the view
         view.scene = newScene
-        view.isPlaying = true   // make sure animations advance
+        view.isPlaying = true
 
-        // 5) Restore camera
         if let saved = lastCameraTransform {
             if let pov = view.pointOfView {
                 pov.transform = saved
@@ -151,7 +134,6 @@ final class BearAnimViewModel: ObservableObject {
 
     func stop() {
         guard let view = scnView else { return }
-        // Remove all animations recursively
         view.scene?.rootNode.enumerateChildNodes { node, _ in
             node.removeAllAnimations()
         }
@@ -160,7 +142,6 @@ final class BearAnimViewModel: ObservableObject {
 
     func applySpeed() {
         guard let root = scnView?.scene?.rootNode else { return }
-        // Re-apply speed to every animation currently attached
         root.enumerateChildNodes { node, _ in
             for key in node.animationKeys {
                 if let ca = node.animation(forKey: key) as? CAAnimation {
@@ -173,7 +154,6 @@ final class BearAnimViewModel: ObservableObject {
         }
     }
 
-    // Make every animation on every node loop & honor speed
     private func loopAndSpeedAllAnimations(in root: SCNNode, loop: Bool, speed: Float) {
         root.enumerateChildNodes { node, _ in
             for key in node.animationKeys {
@@ -203,11 +183,14 @@ struct DAESceneView: UIViewRepresentable {
         view.autoenablesDefaultLighting = true
         view.allowsCameraControl = true
 
-        // Load a base scene (first part)
-        view.scene = SCNScene(named: "art.scnassets/p1.dae") ?? SCNScene()
-        view.isPlaying = true
+        if let scene = SCNScene(named: "art.scnassets/p1.dae") {
+            view.scene = scene
+        } else {
+            print("⚠️ Could not load p1.dae from art.scnassets")
+            view.scene = SCNScene()
+        }
 
-        // Keep a reference so VM can swap scenes
+        view.isPlaying = true
         vm.scnView = view
         return view
     }
