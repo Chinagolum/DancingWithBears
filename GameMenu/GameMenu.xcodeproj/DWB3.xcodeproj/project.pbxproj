@@ -6,127 +6,106 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		AEE818642F04D3AC00319058 /* GameEngine in Frameworks */ = {isa = PBXBuildFile; productRef = AEE818632F04D3AC00319058 /* GameEngine */; };
-		AEE818852F04DAB800319058 /* GameController in Frameworks */ = {isa = PBXBuildFile; productRef = AEE818842F04DAB800319058 /* GameController */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		AE5468582F00A035003770BB /* GameMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A93B57A02EA4B9DE00BEE798 /* DWB3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DWB3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		AE54685A2F00A035003770BB /* GameMenu */ = {
+		A93B57A22EA4B9DE00BEE798 /* DWB3 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = GameMenu;
+			path = DWB3;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AE5468552F00A035003770BB /* Frameworks */ = {
+		A93B579D2EA4B9DE00BEE798 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEE818852F04DAB800319058 /* GameController in Frameworks */,
-				AEE818642F04D3AC00319058 /* GameEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AE54684F2F00A035003770BB = {
+		A93B57972EA4B9DE00BEE798 = {
 			isa = PBXGroup;
 			children = (
-				AE54685A2F00A035003770BB /* GameMenu */,
-				AEE818832F04DAB000319058 /* Frameworks */,
-				AE5468592F00A035003770BB /* Products */,
+				A93B57A22EA4B9DE00BEE798 /* DWB3 */,
+				A93B57A12EA4B9DE00BEE798 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AE5468592F00A035003770BB /* Products */ = {
+		A93B57A12EA4B9DE00BEE798 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AE5468582F00A035003770BB /* GameMenu.app */,
+				A93B57A02EA4B9DE00BEE798 /* DWB3.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		AEE818832F04DAB000319058 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AE5468572F00A035003770BB /* GameMenu */ = {
+		A93B579F2EA4B9DE00BEE798 /* DWB3 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE5468632F00A036003770BB /* Build configuration list for PBXNativeTarget "GameMenu" */;
+			buildConfigurationList = A93B57AB2EA4B9DF00BEE798 /* Build configuration list for PBXNativeTarget "DWB3" */;
 			buildPhases = (
-				AE5468542F00A035003770BB /* Sources */,
-				AE5468552F00A035003770BB /* Frameworks */,
-				AE5468562F00A035003770BB /* Resources */,
+				A93B579C2EA4B9DE00BEE798 /* Sources */,
+				A93B579D2EA4B9DE00BEE798 /* Frameworks */,
+				A93B579E2EA4B9DE00BEE798 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				AE54685A2F00A035003770BB /* GameMenu */,
+				A93B57A22EA4B9DE00BEE798 /* DWB3 */,
 			);
-			name = GameMenu;
+			name = DWB3;
 			packageProductDependencies = (
-				AEE818632F04D3AC00319058 /* GameEngine */,
-				AEE818842F04DAB800319058 /* GameController */,
 			);
-			productName = GameMenu;
-			productReference = AE5468582F00A035003770BB /* GameMenu.app */;
+			productName = DWB3;
+			productReference = A93B57A02EA4B9DE00BEE798 /* DWB3.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AE5468502F00A035003770BB /* Project object */ = {
+		A93B57982EA4B9DE00BEE798 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2610;
-				LastUpgradeCheck = 2610;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					AE5468572F00A035003770BB = {
-						CreatedOnToolsVersion = 26.1.1;
+					A93B579F2EA4B9DE00BEE798 = {
+						CreatedOnToolsVersion = 26.0;
 					};
 				};
 			};
-			buildConfigurationList = AE5468532F00A035003770BB /* Build configuration list for PBXProject "GameMenu" */;
+			buildConfigurationList = A93B579B2EA4B9DE00BEE798 /* Build configuration list for PBXProject "DWB3" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = AE54684F2F00A035003770BB;
+			mainGroup = A93B57972EA4B9DE00BEE798;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				AEE8185F2F04D39100319058 /* XCLocalSwiftPackageReference "../GameController" */,
-				AEE818622F04D3AC00319058 /* XCLocalSwiftPackageReference "../GameEngine" */,
-			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = AE5468592F00A035003770BB /* Products */;
+			productRefGroup = A93B57A12EA4B9DE00BEE798 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE5468572F00A035003770BB /* GameMenu */,
+				A93B579F2EA4B9DE00BEE798 /* DWB3 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AE5468562F00A035003770BB /* Resources */ = {
+		A93B579E2EA4B9DE00BEE798 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -136,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AE5468542F00A035003770BB /* Sources */ = {
+		A93B579C2EA4B9DE00BEE798 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -146,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		AE5468612F00A036003770BB /* Debug */ = {
+		A93B57A92EA4B9DF00BEE798 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -181,7 +160,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = HP6XB2JZ7H;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -199,7 +177,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -210,7 +188,7 @@
 			};
 			name = Debug;
 		};
-		AE5468622F00A036003770BB /* Release */ = {
+		A93B57AA2EA4B9DF00BEE798 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -245,7 +223,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = HP6XB2JZ7H;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -257,7 +234,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -267,7 +244,7 @@
 			};
 			name = Release;
 		};
-		AE5468642F00A036003770BB /* Debug */ = {
+		A93B57AC2EA4B9DF00BEE798 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -282,12 +259,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.myorganization.GameMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = Bear.DWB3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -299,7 +277,7 @@
 			};
 			name = Debug;
 		};
-		AE5468652F00A036003770BB /* Release */ = {
+		A93B57AD2EA4B9DF00BEE798 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -314,12 +292,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.myorganization.GameMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = Bear.DWB3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -334,48 +313,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AE5468532F00A035003770BB /* Build configuration list for PBXProject "GameMenu" */ = {
+		A93B579B2EA4B9DE00BEE798 /* Build configuration list for PBXProject "DWB3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AE5468612F00A036003770BB /* Debug */,
-				AE5468622F00A036003770BB /* Release */,
+				A93B57A92EA4B9DF00BEE798 /* Debug */,
+				A93B57AA2EA4B9DF00BEE798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE5468632F00A036003770BB /* Build configuration list for PBXNativeTarget "GameMenu" */ = {
+		A93B57AB2EA4B9DF00BEE798 /* Build configuration list for PBXNativeTarget "DWB3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AE5468642F00A036003770BB /* Debug */,
-				AE5468652F00A036003770BB /* Release */,
+				A93B57AC2EA4B9DF00BEE798 /* Debug */,
+				A93B57AD2EA4B9DF00BEE798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		AEE8185F2F04D39100319058 /* XCLocalSwiftPackageReference "../GameController" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../GameController;
-		};
-		AEE818622F04D3AC00319058 /* XCLocalSwiftPackageReference "../GameEngine" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../GameEngine;
-		};
-/* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		AEE818632F04D3AC00319058 /* GameEngine */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GameEngine;
-		};
-		AEE818842F04DAB800319058 /* GameController */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AEE8185F2F04D39100319058 /* XCLocalSwiftPackageReference "../GameController" */;
-			productName = GameController;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = AE5468502F00A035003770BB /* Project object */;
+	rootObject = A93B57982EA4B9DE00BEE798 /* Project object */;
 }
