@@ -1,14 +1,14 @@
 //
-//  DWB3App.swift
-//  DWB3
+//  PreviewApp.swift
+//  Preview
 //
-//  Created by abcd on 10/18/25.
+//  Created by Chinagolum Adigwe on 12/31/25.
 //
 
 import SwiftUI
 
 @main
-struct DWB3App: App {
+struct PreviewApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

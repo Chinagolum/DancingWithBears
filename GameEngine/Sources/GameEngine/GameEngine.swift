@@ -1,21 +1,22 @@
 //
-//  ContentView.swift
-//  DWB3
+//  GameEngine.swift
+//  GameEngine
 //
-//  Created by abcd on 10/18/25.
-//  Updated: button-triggered p1…p4 .dae playback
+//  Created by Chinagolum Adigwe on 12/31/25.
 //
 
+import Foundation
 import SwiftUI
 import SceneKit
 import Combine
 import GameController
 
 // MARK: - Public View
-struct ContentView: View {
+public struct GameEngineView: View {
+    public init() {}
     @StateObject private var vm = BearAnimViewModel()
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             VStack(spacing: 12) {
                 DAESceneView(vm: vm)
@@ -74,16 +75,17 @@ struct ContentView: View {
                 .padding()
                 .background(.ultraThinMaterial)
             }
+
             GameControllerView { pattern in
                 print("Pattern completed: \(pattern)")
             }
+            
         }
-        
-        
     }
 }
 
 // MARK: - ViewModel
+@MainActor
 final class BearAnimViewModel: ObservableObject {
     // Map directly to your files in art.scnassets: p1.dae, p2.dae, p3.dae, p4.dae
     let clips = ["p1", "p2", "p3", "p4"]
@@ -137,14 +139,14 @@ final class BearAnimViewModel: ObservableObject {
             }
         }
 
-        DispatchQueue.main.async { self.isPaused = false }
+        isPaused = false
     }
 
     func pauseOrResume() {
         guard let view = scnView else { return }
         let newPaused = !(view.scene?.isPaused ?? false)
         view.scene?.isPaused = newPaused
-        DispatchQueue.main.async { self.isPaused = newPaused }
+        isPaused = newPaused
     }
 
     func stop() {
@@ -153,7 +155,7 @@ final class BearAnimViewModel: ObservableObject {
         view.scene?.rootNode.enumerateChildNodes { node, _ in
             node.removeAllAnimations()
         }
-        DispatchQueue.main.async { self.isPaused = false }
+        isPaused = false
     }
 
     func applySpeed() {
@@ -213,7 +215,8 @@ struct DAESceneView: UIViewRepresentable {
     func updateUIView(_ uiView: SCNView, context: Context) {}
 }
 
+/*
 #Preview {
-    ContentView()
+    GameEngineView()
 }
-
+*/
