@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		AEE818642F04D3AC00319058 /* GameEngine in Frameworks */ = {isa = PBXBuildFile; productRef = AEE818632F04D3AC00319058 /* GameEngine */; };
 		AEE818852F04DAB800319058 /* GameController in Frameworks */ = {isa = PBXBuildFile; productRef = AEE818842F04DAB800319058 /* GameController */; };
+		AEE8191D2F0B19B300319058 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AEE8191C2F0B19B300319058 /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AE5468582F00A035003770BB /* GameMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEE8191C2F0B19B300319058 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = ../GameEngine/Sources/GameEngine/Resources/art.scnassets; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -39,6 +41,7 @@
 		AE54684F2F00A035003770BB = {
 			isa = PBXGroup;
 			children = (
+				AEE8191C2F0B19B300319058 /* art.scnassets */,
 				AE54685A2F00A035003770BB /* GameMenu */,
 				AEE818832F04DAB000319058 /* Frameworks */,
 				AE5468592F00A035003770BB /* Products */,
@@ -130,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE8191D2F0B19B300319058 /* art.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

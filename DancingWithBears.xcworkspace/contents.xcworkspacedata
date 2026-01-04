@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <FileRef
-      location = "group:GameController">
-   </FileRef>
+   <Group
+      location = "group:GameMenu"
+      name = "GameMenu">
+      <FileRef
+         location = "group:GameMenu.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>
