@@ -17,7 +17,7 @@ let package = Package(
             name: "GameEngine",
             path: "Sources/GameEngine",
             resources: [
-                .process("art.scnassets") // relative to target folder
+                .process("Resources")
             ]
         ),
         .testTarget(
